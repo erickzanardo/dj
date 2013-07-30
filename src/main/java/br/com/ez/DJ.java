@@ -42,13 +42,12 @@ public class DJ {
 	public DJ template(String template) {
 		Context cx = Context.enter();
 
-		ScriptableObject scriptableObject = (ScriptableObject) cx
-				.newObject(global);
+		ScriptableObject scriptableObject = (ScriptableObject) cx.newObject(global);
 		scriptableObject.setParentScope(global);
 
 		Function f = (Function) global.get("compileFn");
 
-		f.call(cx, global, scriptableObject, new Object[]{template});
+		f.call(cx, global, scriptableObject, new Object[] { template });
 
 		Context.exit();
 
@@ -61,6 +60,22 @@ public class DJ {
 		return this;
 	}
 
+	public DJ addGlobalObject(String valueName, JsonElement jsonElement) {
+
+		Context cx = Context.enter();
+
+		ScriptableObject scriptableObject = (ScriptableObject) cx.newObject(global);
+		scriptableObject.setParentScope(global);
+
+		Function f = (Function) global.get("addGlobalObject");
+
+		f.call(cx, global, scriptableObject, new Object[] { valueName, jsonElement });
+
+		Context.exit();
+
+		return this;
+	}
+
 	public String result() {
 		if (!templateCompiled) {
 			throw new RuntimeException("No template was provided");
@@ -68,8 +83,7 @@ public class DJ {
 
 		Context cx = Context.enter();
 
-		ScriptableObject scriptableObject = (ScriptableObject) cx
-				.newObject(global);
+		ScriptableObject scriptableObject = (ScriptableObject) cx.newObject(global);
 		scriptableObject.setParentScope(global);
 
 		Function f = (Function) global.get("result");
@@ -78,7 +92,7 @@ public class DJ {
 			jsonContext = new JsonObject();
 		}
 
-		Object result = f.call(cx, global, scriptableObject, new Object[]{jsonContext});
+		Object result = f.call(cx, global, scriptableObject, new Object[] { jsonContext });
 
 		Context.exit();
 
@@ -87,8 +101,7 @@ public class DJ {
 
 	private String readFile(String file) {
 
-		InputStream resourceAsStream = DJ.class.getClassLoader()
-				.getResourceAsStream(file);
+		InputStream resourceAsStream = DJ.class.getClassLoader().getResourceAsStream(file);
 
 		BufferedReader br = null;
 		StringBuilder ret = new StringBuilder();
