@@ -131,4 +131,13 @@ public class DJTest {
 		assertEquals("Global Object test - 12", result);
 	}
 
+	@Test
+	public void testHtmlTagDJ() {
+		JsonObject object = new JsonObject();
+		object.addProperty("foo", "<strong>I'm strong!</strong>");
+
+		String result = new DJ().template("<h1>Here is a sample template with html tags on it's body, take a look: {{=it.foo}}</h1>").context(object).result();
+		assertEquals("<h1>Here is a sample template with html tags on it's body, take a look: <strong>I'm strong!</strong></h1>", result);
+	}
+	
 }
