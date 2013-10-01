@@ -5,6 +5,21 @@ DJ is a simple API for using the doT javascript template (http://olado.github.io
 
 It's is very simple to use, as the following code shows
 
+Configure your pom to use the DJ dependency
+
+```xml
+  <repository>
+    <id>erickzanardo-releases</id>
+    <url>http://erickzanardo.github.com/maven/releases/</url>
+  </repository>
+
+  <dependency>
+    <groupId>com.rambi</groupId>
+    <artifactId>rambi-engine</artifactId>
+    <version>1.1.3</version>
+  </dependency>
+```
+
 ```java
 JsonObject object = new JsonObject();
   	object.addProperty("foo", "with doT");
