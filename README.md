@@ -9,14 +9,14 @@ Configure your pom to use the DJ dependency
 
 ```xml
   <repository>
-    <id>erickzanardo-releases</id>
-    <url>http://erickzanardo.github.com/maven/releases/</url>
+	<id>erickzanardo-releases</id>
+	<url>http://erickzanardo.github.com/maven/releases/</url>
   </repository>
 
   <dependency>
-    <groupId>com.rambi</groupId>
-    <artifactId>rambi-engine</artifactId>
-    <version>1.1.3</version>
+	<groupId>br.com.ez</groupId>
+	<artifactId>dj</artifactId>
+	<version>1.1</version>
   </dependency>
 ```
 
